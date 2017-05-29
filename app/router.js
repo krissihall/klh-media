@@ -16,6 +16,17 @@ Router.map(function() {
     this.route('work:work_id');
 
     this.route('contact');
+
+    this.resource('admin', function () {
+        this.route('works');
+        this.route('edit', function () {
+            this.route('work:work_id');
+        });
+
+        this.route('add', function () {
+            this.route('works');
+        });
+    });
 });
 
 export default Router;

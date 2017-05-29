@@ -1,4 +1,5 @@
 <div class="site-header container-fluid">
-  [header]
-  {{yield}}
+  {{#link-to "index" class="site-logo"}}[logo]{{/link-to}}
+
+  {{site-header/top-nav}}
 </div>
