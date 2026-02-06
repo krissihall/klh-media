@@ -1,0 +1,58 @@
+@use "../../includes/variables/forms/form-input" as i;
+@use "../../includes/variables/forms/form-label" as l;
+@use "../../includes/functions" as f;
+@use "../../includes/variables" as v;
+@use "../../includes/mixins/box-shadow" as bs;
+
+.form-input {
+    // background: $input-bg-color;
+    background: transparent;
+    border: none;
+    border-radius: i.$input-border-radius;
+    @include bs.box-shadow(inset 0 0 0 i.$input-border-width i.$input-border-color);
+    font-size: i.$input-font-size;
+    outline: none;
+    padding: i.$input-padding-y i.$input-padding-x;
+    position: relative;
+    transition: all 0.5s ease-in;
+    transition-property: box-shadow, background;
+    z-index: 2;
+
+    &::placeholder {
+        color: transparent;
+        opacity: 0;
+    }
+
+    & ~ .form-label {
+        align-self: center;
+        bottom: 0;
+        height: i.$input-max-height;
+        margin-left: i.$input-padding-x;
+        margin-right: i.$input-padding-x;
+        position: absolute;
+        top: 0;
+        transition: all 0.25s ease-in;
+        transition-property: color, font-size, top;
+        z-index: 3;
+    }
+
+    &:focus,
+    &:active,
+    &:focus-visible,
+    &.has-value {
+        // background: $input-hover-bg-color;
+        border: none;
+        border-radius: i.$input-hover-border-radius;
+        @include bs.box-shadow(inset 0 0 0 i.$input-hover-border-width i.$input-hover-border-color);
+
+        & ~ .form-label {
+            background: rgba(v.$form-bg, 1);
+            bottom: auto;
+            color: l.$form-label-active-color;
+            font-size: l.$form-label-active-size;
+            height: auto;
+            padding: 0 f.rem-calc(4);
+            top: f.rem-calc(-8);
+        }
+    }
+}

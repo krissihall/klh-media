@@ -1,0 +1,56 @@
+@use "../includes/variables" as v;
+@use "../includes/functions" as f;
+
+.side-nav-grid {
+    display: grid;
+    grid-template-areas: "sidebar main";
+    grid-template-columns: 1fr 5fr;
+    gap: 1.5rem;
+
+    .side-nav {
+        display: block;
+        grid-area: "sidebar";
+        height: 70vh;
+        overflow-y: auto;
+
+        &.sticky {
+            bottom: v.$footer-height;
+            position: sticky;
+            top: f.rem-calc(20);
+        }
+
+        .nav {
+            cursor: pointer;
+            .nav-item {
+                display: block;
+                
+                &.footer-item {
+                    margin-top: f.rem-calc(24);
+                }
+            }
+        }
+    }
+
+    .nav-header {
+        align-items: center;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+
+        &[aria-expanded] {
+            .arrow {
+                transition: transform 0.5s ease-in-out;
+            }
+        }
+
+        &[aria-expanded=true] {
+            .arrow {
+                transform: rotate(-180deg);
+            }
+        }
+    }
+
+    .side-nav-grid-content {
+        grid-area: "main";
+    }
+}

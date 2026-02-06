@@ -1,0 +1,72 @@
+@use "../includes/variables" as v;
+
+.link-animation {
+    // margin-bottom: rem-calc(15) !important;
+    // font-size: 16px !important;
+    // display: inline-block !important;
+}
+
+.overlineLeftUnderlineRight:after,
+.overlineLeftUnderlineRight:before {
+    position: absolute;
+    z-index: -1
+}
+
+.overlineLeftUnderlineRight:after {
+    content: "";
+    top: 0
+}
+
+.overlineLeftUnderlineRight:after {
+    width: var(--#{v.$prefix}link-animation-stroke);
+    height: var(--#{v.$prefix}link-animation-stroke);
+    right: 0
+}
+
+.overlineLeftUnderlineRight:focus:after,
+.overlineLeftUnderlineRight:hover:after {
+    width: 100%;
+    height: var(--#{v.$prefix}link-animation-stroke)
+}
+
+.overlineLeftUnderlineRight:before {
+    content: "";
+    width: var(--#{v.$prefix}link-animation-stroke);
+    height: var(--#{v.$prefix}link-animation-stroke);
+    bottom: 0;
+    left: 0
+}
+
+.overlineLeftUnderlineRight:focus:before,
+.overlineLeftUnderlineRight:hover:before {
+    width: 100%;
+    height: var(--#{v.$prefix}link-animation-stroke)
+}
+
+.linkAnimation {
+    // text-transform: uppercase;
+    // display: inline;
+    box-sizing: border-box;
+    user-select: none;
+    transition: color 1s ease
+}
+
+.linkAnimation:focus,
+.linkAnimation:hover {
+    outline: 0;
+    // color: var(--#{v.$prefix}link-animation-bg);
+}
+
+.linkAnimation:after,
+.linkAnimation:before {
+    transition: all 1s ease 0s
+}
+
+.linkAnimation:focus:after,
+.linkAnimation:focus:before,
+.linkAnimation:hover:after,
+.linkAnimation:hover:before {
+    outline: 0;
+    background-color: var(--#{$prefix}link-animation-bg);
+    transition: all 1s ease 0s
+}

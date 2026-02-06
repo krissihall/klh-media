@@ -1,0 +1,99 @@
+@use "sass:color";
+
+@use "../variables" as v;
+@use "../variables/buttons" as b;
+@use "../functions" as f;
+
+// Button variants
+//
+// Easily pump out default styles, as well as :hover, :focus, :active,
+// and disabled options for all buttons
+@mixin button-variant($background,
+    $border,
+    $color: f.color-contrast($background),
+    $hover-background: process-bg($color, $background, v.$color-contrast-light, b.$btn-hover-bg-shade-amount, b.$btn-hover-bg-tint-amount),
+    // $hover-border: if($color == $color-contrast-light, tint-color($border, ($btn-hover-border-tint-amount * 2)), shade-color($border, ($btn-hover-border-shade-amount * 2))),
+    $hover-border: process-border($color, $border, v.$color-contrast-light, (b.$btn-hover-border-shade-amount * 2), (b.$btn-hover-border-tint-amount * 2)),
+    $hover-color: f.color-contrast($hover-background),
+    // $active-background: if($color == $color-contrast-light, shade-color($background, $btn-active-bg-shade-amount), tint-color($background, $btn-active-bg-tint-amount)),
+    $active-background: process-bg($color, $background, v.$color-contrast-light, b.$btn-active-bg-shade-amount, b.$btn-active-bg-tint-amount),
+    // $active-border: if($color == $color-contrast-light, shade-color($border, $btn-active-border-shade-amount), tint-color($border, $btn-active-border-tint-amount)),
+    $active-border: process-border($color, $border, v.$color-contrast-light, b.$btn-active-border-shade-amount, b.$btn-active-border-tint-amount),
+    $active-color: f.color-contrast($active-background),
+    $disabled-background: $background,
+    $disabled-border: $border,
+    $disabled-color: f.color-contrast($disabled-background)) {
+    --#{v.$prefix}btn-color: #{$color};
+    --#{v.$prefix}btn-bg: #{$background};
+    // --#{v.$prefix}btn-border-color: #{if($color ==$color-contrast-light, shade-color($background, ($btn-hover-border-shade-amount * 2)), tint-color($background, ($btn-hover-border-tint-amount * 2)))};
+    --#{v.$prefix}btn-border-color: process-border($color, $border, v.$color-contrast-light, (b.$btn-hover-border-shade-amount * 2), (b.$btn-hover-border-tint-amount * 2));
+    // --#{v.$prefix}btn-border-color: tint-color($background, ($btn-hover-border-tint-amount * 2));
+    // --#{v.$prefix}btn-border-color: shade-color($background, ($btn-hover-border-shade-amount * 2));
+    --#{v.$prefix}btn-border-hover-color: #{$hover-border};
+    --#{v.$prefix}btn-hover-color: #{$hover-color};
+    --#{v.$prefix}btn-hover-bg: #{$hover-background};
+    --#{v.$prefix}btn-focus-shadow-rgb: #{to-rgb(color.mix($color, $border, 15%))};
+    --#{v.$prefix}btn-active-color: #{$active-color};
+    --#{v.$prefix}btn-active-bg: #{$active-background};
+    --#{v.$prefix}btn-active-border-color: #{$active-border};
+    --#{v.$prefix}btn-active-shadow: #{b.$btn-active-box-shadow};
+    --#{v.$prefix}btn-disabled-color: #{$disabled-color};
+    --#{v.$prefix}btn-disabled-bg: #{$disabled-background};
+    --#{v.$prefix}btn-disabled-border-color: #{$disabled-border};
+}
+
+@mixin button-outline-variant($color,
+    $color-hover: f.color-contrast($color),
+    // $hover-background: if($color == $color-contrast-light, shade-color($color, $btn-hover-bg-shade-amount), tint-color($color, $btn-hover-bg-tint-amount)),
+    $hover-background: process-bg($color, v.$white, v.$color-contrast-light, b.$btn-hover-bg-shade-amount, b.$btn-hover-bg-tint-amount),
+    // $active-background: if($color == $color-contrast-light, shade-color($color, $btn-active-bg-shade-amount), tint-color($color, $btn-active-bg-tint-amount)),
+    $active-background: process-bg($color, v.$white, v.$color-contrast-light, b.$btn-active-bg-shade-amount, b.$btn-active-bg-tint-amount),
+    // $hover-border: if($color == $color-contrast-light, tint-color($color, ($btn-hover-border-tint-amount * 2)), shade-color($color, ($btn-hover-border-shade-amount * 2))),
+    $hover-border: process-border($color, $color, v.$color-contrast-light, (b.$btn-hover-border-shade-amount * 2), (b.$btn-hover-border-tint-amount * 2)),
+    // $active-border: if($color == $color-contrast-light, shade-color($color, $btn-active-border-shade-amount), tint-color($color, $btn-active-border-tint-amount)),
+    $active-border: process-border($color, $color, v.$color-contrast-light, b.$btn-active-border-shade-amount, b.$btn-active-border-tint-amount),
+    $active-color: f.color-contrast($active-background)) {
+    --#{v.$prefix}btn-color: #{$color};
+    --#{v.$prefix}btn-border-color: #{$color};
+    --#{v.$prefix}btn-border-hover-color: #{$hover-border};
+    --#{v.$prefix}btn-hover-color: #{$color-hover};
+    --#{v.$prefix}btn-hover-bg: #{$hover-background};
+    --#{v.$prefix}btn-focus-shadow-rgb: #{to-rgb($color)};
+    --#{v.$prefix}btn-active-color: #{$active-color};
+    --#{v.$prefix}btn-active-bg: #{$active-background};
+    --#{v.$prefix}btn-active-border-color: #{$active-border};
+    --#{v.$prefix}btn-active-shadow: #{b.$btn-active-box-shadow};
+    --#{v.$prefix}btn-disabled-color: #{$color};
+    --#{v.$prefix}btn-disabled-bg: transparent;
+    --#{v.$prefix}btn-disabled-border-color: #{$color};
+    --#{v.$prefix}gradient: none;
+}
+
+@mixin button-size($padding-y, $padding-x, $font-size, $border-radius) {
+    --#{v.$prefix}btn-padding-y: #{$padding-y};
+    --#{v.$prefix}btn-padding-x: #{$padding-x};
+    --#{v.$prefix}btn-font-size: #{$font-size};
+    --#{v.$prefix}btn-border-radius: #{$border-radius};
+}
+
+@function process-bg ($color, $background, $contrast, $shade-amount, $tint-amount) {
+    // if($color == $color-contrast-light, shade-color($background, $btn-hover-bg-shade-amount), tint-color($background, $btn-hover-bg-tint-amount))
+    $val: null;
+    @if $color == $contrast {
+        $val: f.shade-color($background, $shade-amount);
+    } @else {
+        $val: f.tint-color($background, $tint-amount);
+    }
+    @return $val;
+}
+
+@function process-border ($color, $border, $contrast, $shade-amount, $tint-amount) {
+    // if($color == $color-contrast-light, tint-color($border, ($btn-hover-border-tint-amount * 2)), shade-color($border, ($btn-hover-border-shade-amount * 2)))
+    $val: null;
+    @if $contrast {
+        $val: f.tint-color($border, $tint-amount);
+    } @else {
+        $val: f.shade-color($border, $shade-amount);
+    }
+    @return $val;
+}

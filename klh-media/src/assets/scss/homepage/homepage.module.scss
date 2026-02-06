@@ -1,0 +1,66 @@
+@use "sass:selector";
+@use "sass:math";
+@use "sass:color";
+
+@forward "../includes/includes-module";
+@use "variables" as v;
+@use "animations" as a;
+
+.container {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    height: 100vh;
+    justify-content: flex-start;
+    overflow: hidden;
+    width: 100vw;
+
+    .leftSide {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        flex-wrap: nowrap;
+        max-width: v.$max-content-width;
+        padding-right: f.rem-calc(64);
+    }
+
+    .content {
+        padding: f.rem-calc(24);
+    }
+
+    .navigation {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        height: 100vh;
+        padding: 0 f.rem-calc(24);
+
+        .navLink {
+            align-items: center;
+            display: flex;
+            height: math.div(100vh, v.$home-link-amount);
+            margin: 0 auto;
+            overflow: hidden;
+            padding-top: 2vh;
+        }
+
+        .link {
+            align-self: center;
+            font-family: var(--kh-script-font);
+            font-size: calc(math.div(100vh, v.$home-link-amount) - 5vh);
+            line-height: 1;
+            padding-left: f.rem-calc(8);
+            padding-right: f.rem-calc(16);
+            padding-top: 3vh;
+            position: relative;
+
+            &:hover,
+            &:focus,
+            &:active {
+                text-decoration: none;
+            }
+        }
+    }
+}

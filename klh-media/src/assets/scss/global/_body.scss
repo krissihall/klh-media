@@ -1,0 +1,68 @@
+@use "../includes/variables" as v;
+@use "../includes/functions" as f;
+
+// Body Styles
+body {
+    background: f.tint-color(v.$black, 15%);
+    font-family: var(--#{v.$prefix}font-family);
+    font-size: f.rem-calc(16);
+    font-weight: var(--#{v.$prefix}regular-font);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    width: 100vw;
+
+    .application-root {
+        align-items: center;
+        display: flex;
+        height: 100vh;
+        overflow: hidden;
+        justify-content: center;
+        position: relative;
+        scroll-behavior: smooth;
+        width: 100vw;
+        z-index: 2;
+    }
+
+    .content-container {
+        height: calc(100vh - (#{v.$header-height} + (#{f.rem-calc(12) * 2}) ));
+        overflow-y: overlay;
+        overflow-x: hidden;
+        position: inherit;
+        z-index: 2;
+
+        &.slim {
+            height: calc(100vh - (#{v.$header-slim-height} + (#{f.rem-calc(12) * 2}) ));
+        }
+    }
+}
+
+.container-fluid {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: var(--#{v.$prefix}max-page-width);
+    padding-left: var(--#{v.$prefix}padding-left);
+    padding-right: var(--#{v.$prefix}padding-right);
+    width: 100%;
+}
+
+.img-responsive {
+    display: block;
+    width: 100%;
+}
+
+.rounded-box {
+    --rounded-box: #{v.$border-radius};
+    background: v.$form-bg;
+    padding: f.rem-calc(24);
+}
+
+p {
+    margin-bottom: f.rem-calc(24);
+}
+
+.hide {
+    display: none;
+    height: 0 !important;
+}

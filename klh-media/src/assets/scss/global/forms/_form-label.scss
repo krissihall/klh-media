@@ -1,0 +1,13 @@
+@use "../../includes/variables/forms/form-label" as l;
+@use "../../includes/variables/forms/form-input" as i;
+
+.form-label {
+    align-items: center;
+    color: l.$form-label-color;
+    display: flex;
+    font-weight: l.$form-label-font-weight;
+    font-size: l.$form-label-size;
+    max-height: i.$input-max-height;
+    position: inherit;
+    z-index: 1;
+}

@@ -1,0 +1,38 @@
+@use "../includes/variables" as v;
+@use "../includes/functions" as f;
+
+header {
+    z-index: 1000;
+    height: v.$header-height;
+    transition: height 0.5s ease-in-out;
+
+    .full-logo {
+        display: flex;
+        opacity: 1;
+        transition: opacity 0.5s ease-in;
+    }
+
+    .mini-logo {
+        display: none;
+        opacity: 0;
+        transition: opacity 0.5s ease-out;;
+    }
+
+    &.slim {
+        height: v.$header-slim-height + (f.rem-calc(12) * 2);
+
+        .full-logo {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease-out;
+        }
+
+        .mini-logo {
+            display: flex;
+            height: v.$header-slim-height;
+            opacity: 1;
+            transition: opacity 0.5s ease-in;
+            width: auto;
+        }
+    }
+}

@@ -1,0 +1,13 @@
+.work-card-container {
+    flex-wrap: wrap;
+    // gap: rem-calc(12);
+    justify-content: flex-start;
+    .card {
+        overflow: hidden;
+        width: calc(50% - 6px);
+        img {
+            height: auto;
+            width: 100%;
+        }
+    }
+}
