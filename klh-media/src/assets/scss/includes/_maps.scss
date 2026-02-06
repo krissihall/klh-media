@@ -242,4 +242,12 @@ $utilities-border-subtle: (
   "hue-primary-8-subtle": var(--#{v.$prefix}hue-primary-8-border-subtle)
 ) !default;
 
+$utilities-links: map.merge(
+  $utilities-colors,
+  (
+    "black": to-rgb(v.$black),
+    "white": to-rgb(v.$white)
+  )
+) !default;
+$utilities-links-underline: m.map-loop($utilities-links, rgba-css, "$key", "link-underline") !default;
 // $utilities-links-underline: map-loop($utilities-colors, rgba-css, "$key", "link-underline") !default;

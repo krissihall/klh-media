@@ -228,19 +228,19 @@ $utilities: map.merge(
             class: text,
             values: m.$utilities-text-emphasis-colors
         ),
-        // "link-underline": (
-        //     property: text-decoration-color,
-        //     class: link-underline,
-        //     local-vars: (
-        //         "link-underline-opacity": 1
-        //     ),
-        //     values: map.merge(
-        //         m.$utilities-links-underline,
-        //         (
-        //             null: rgba(var(--#{v.$prefix}link-color-rgb), var(--#{v.$prefix}link-underline-opacity, 1)),
-        //         )
-        //     )
-        // ),
+        "link-underline": (
+            property: text-decoration-color,
+            class: link-underline,
+            local-vars: (
+                "link-underline-opacity": 1
+            ),
+            values: map.merge(
+                m.$utilities-links-underline,
+                (
+                    null: rgba(var(--#{v.$prefix}link-color-rgb), var(--#{v.$prefix}link-underline-opacity, 1)),
+                )
+            )
+        ),
         "bg-opacity": (
             css-var: true,
             class: bg-opacity,
