@@ -1,4 +1,10 @@
 <script setup lang="ts">
+import { useDisplay } from 'vuetify';
+import { useBreakpoints } from '@/composables/useBreakpoints';
+
+const { width, name, mobile } = useDisplay()
+const { currentBreakpoint } = useBreakpoints();
+
 const props = defineProps({
     isShown: Boolean,
 });
@@ -6,7 +12,12 @@ const props = defineProps({
 
 <template>
     <div v-if="isShown" class="debug-panel">
-        <p class="pb-0">Debug Panel</p>
+        <h3>Debug Panel</h3>
+        <div class="info">
+            Current Breakpoint: {{ name }} {{ currentBreakpoint }}<br />
+            Width: {{ width }}px<br />
+            Is Mobile: {{ mobile }}
+        </div>
         <div class="debug-scss"></div>
     </div>
 </template>

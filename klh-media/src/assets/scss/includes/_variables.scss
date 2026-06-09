@@ -6,11 +6,8 @@ $base:                 16 !default;
 $max-vw:               1920px !default;
 $max-vh:               1080px !default;
 $max-page-width:       1400px !default;
-$prefix:               "kh-" !default;
+$prefix:               "bs-" !default;
 $container-padding:    32 !default;
-$header-height:        rem.rem-calc(150) !default;
-$header-slim-height:   rem.rem-calc(50) !default;
-$footer-height:        rem.rem-calc(110) !default;
 
 $line-height-base:     1.5 !default;
 
@@ -138,6 +135,18 @@ $emphasis:             60%;
 $subtle-bg:            80%;
 $subtle-border:        60%;
 
+// Page Settings
+$body-bg:              col.tint-color($black, 15%) !default;
+
+// Header Settings
+$header-height:        rem.rem-calc(114) !default;
+$header-slim-height:   rem.rem-calc(50) !default;
+$logo-width:           rem.rem-calc(150) !default;
+$header-bg:            col.tint-color($body-bg, 10%) !default;
+
+// Footer Settings
+$footer-height:        rem.rem-calc(110) !default;
+
 // Link Variables
 $link-color:               $primary !default;
 $link-decoration:          underline !default;
@@ -180,9 +189,29 @@ $color-contrast-dark:  $black !default;
 $color-contrast-light: $white !default;
 
 // Form Settings
-$form-bg:      col.tint-color($black, 10%) !default;
+$form-bg:      col.tint-color($black, 7%) !default;
 $form-padding: $border-radius-lg !default;
 
 // @forward "variables/colors";
 // @forward "variables/buttons";
 // @forward "variables/forms";
+
+// Grid breakpoints
+//
+// Define the minimum dimensions at which your layout will change,
+// adapting to different screen sizes, for use in media queries.
+
+// scss-docs-start grid-breakpoints
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px
+) !default;
+// scss-docs-end grid-breakpoints
+
+@use 'vuetify/settings' with (
+  $grid-breakpoints: $grid-breakpoints,
+);

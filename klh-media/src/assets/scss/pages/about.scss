@@ -1,8 +1,7 @@
 @use "../includes/variables" as v;
 @use "../includes/functions" as f;
 
-.work-container,
-.school-container {
+.about-me-container {
 
     h3 {
         align-items: center;
@@ -21,7 +20,7 @@
 }
 
 .icon {
-    fill: $white;
+    fill: v.$white;
 }
 
 .links {

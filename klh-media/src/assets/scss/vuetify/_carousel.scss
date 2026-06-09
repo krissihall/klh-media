@@ -1,0 +1,30 @@
+@use "../includes/variables" as v;
+@use "../includes/functions" as f;
+
+.v-carousel__controls {
+  .v-btn--active {
+    .v-btn__overlay {
+      background: rgba(v.$white, 0.25);
+      border-radius: f.rem-calc(40);
+    }
+  }
+
+  .v-btn {
+    &:active,
+    &:focus,
+    &:hover,
+    &:focus-visible {
+      .v-btn__overlay {
+        background: rgba(v.$white, 0.5);
+        border: none;
+        border-radius: f.rem-calc(40);
+      }
+
+      .v-btn__underlay {
+        background: rgba(v.$white, 0.35);
+        border: none;
+        border-radius: f.rem-calc(40);
+      }
+    } 
+  }
+}

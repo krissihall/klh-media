@@ -4,6 +4,7 @@
 
 @forward "../includes/includes-module";
 @use "variables" as v;
+@use "functions" as f;
 @use "animations" as a;
 
 .container {

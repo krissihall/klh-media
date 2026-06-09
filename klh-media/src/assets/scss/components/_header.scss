@@ -2,20 +2,40 @@
 @use "../includes/functions" as f;
 
 header {
-    z-index: 1000;
+    background-color: v.$header-bg;
     height: v.$header-height;
     transition: height 0.5s ease-in-out;
+    width: 100%;
+    z-index: 1000;
 
-    .full-logo {
+    .logo {
         display: flex;
         opacity: 1;
+        margin: f.rem-calc(12) f.rem-calc(24) f.rem-calc(12) f.rem-calc(12);
         transition: opacity 0.5s ease-in;
+        width: v.$logo-width;
     }
 
-    .mini-logo {
-        display: none;
-        opacity: 0;
-        transition: opacity 0.5s ease-out;;
+    .main-navigation {
+        padding: 0 f.rem-calc(24) 0;
+        width: 100%;
+
+        .navbar-nav {
+            margin-left: auto;
+            margin-right: 0;
+
+            .nav-link {
+                text-decoration: none;
+                transition: background-color 0.5s ease-in-out;
+
+                &:hover,
+                &:focus,
+                &:active,
+                &.active {
+                    background-color: f.tint-color(v.$primary, 15%);
+                }
+            }
+        }
     }
 
     &.slim {

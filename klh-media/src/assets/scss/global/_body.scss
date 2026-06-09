@@ -3,7 +3,7 @@
 
 // Body Styles
 body {
-    background: f.tint-color(v.$black, 15%);
+    background: v.$body-bg;
     font-family: var(--#{v.$prefix}font-family);
     font-size: f.rem-calc(16);
     font-weight: var(--#{v.$prefix}regular-font);
@@ -23,12 +23,17 @@ body {
         scroll-behavior: smooth;
         width: 100vw;
         z-index: 2;
+
+        .v-application {
+            width: 100%;
+        }
     }
 
     .content-container {
         height: calc(100vh - (#{v.$header-height} + (#{f.rem-calc(12) * 2}) ));
         overflow-y: overlay;
         overflow-x: hidden;
+        padding-top: f.rem-calc(24);
         position: inherit;
         z-index: 2;
 
@@ -55,6 +60,7 @@ body {
 .rounded-box {
     --rounded-box: #{v.$border-radius};
     background: v.$form-bg;
+    border-radius: var(--rounded-box);
     padding: f.rem-calc(24);
 }
 

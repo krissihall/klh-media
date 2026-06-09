@@ -1,14 +1,17 @@
 <script setup lang="ts">
 import DebugBox from './components/DebugBox.vue';
+import SiteHeader from './components/SiteHeader.vue';
 </script>
 
 <template>
   <div id="app" class="application-root">
-    <div class="logo">
-      <img src="/klh-media-logo.svg" alt="KLH Media LLC Logo" width="100%" />
-    </div>
-    <h1>Coming Soon...</h1>
-    <DebugBox :isShown="false" />
+    <v-app style="align-items: center; display: flex">
+      <SiteHeader />
+      <div class="content-container">
+        <router-view />
+      </div>
+      <DebugBox :isShown="true" />
+    </v-app>
   </div>
 </template>
 
